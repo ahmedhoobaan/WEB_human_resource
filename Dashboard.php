@@ -16,7 +16,7 @@
             <table class="table" id="managetable">
                 <thead>
                 <tr>
-                    <th>  ID</th>
+                    <th>  id</th>
                     <th>  F_Name</th>
                     <th>  S_Name </th>
                     <th>  Contact_NO </th>
@@ -30,6 +30,23 @@
     </div>
 </div>
 
+
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <a class="dashboard-stat bg-danger" href="manage-subjects.php">
+        <?php
+        $sql ="SELECT id from  tblsubjects ";
+        $query = $dbh -> prepare($sql);
+        $query->execute();
+        $results=$query->fetchAll(PDO::FETCH_OBJ);
+        $totalsubjects=$query->rowCount();
+        ?>
+        <span class="number counter"><?php echo htmlentities($totalsubjects);?></span>
+        <span class="name">Subjects Listed</span>
+        <span class="bg-icon"><i class="fa fa-ticket"></i></span>
+    </a>
+    <!-- /.dashboard-stat -->
+</div>
 <!-- Module form bootsrap -->
 
 <div class="modal" tabindex="-1" role="dialog" id="addMember">

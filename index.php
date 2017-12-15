@@ -1,185 +1,84 @@
-
 <?php
-
-//connection cheking 
-
-
-include 'php_actions/db_config.php';
-include 'php_actions/connections.php';
-$COND = NEW database ();
-
-
-?>
-
-
-<?php
-//link to the link header
 include "includes/header.php";
+include("php_actions/db_config.php");
 
-
-?>
-<?php
-
-$alert =  '<div class="alert alert-warning">
-    <strong>Warning!</strong> your data successfully enter.
-</div>';
-
-
-?>
-
-<!-- jquery  css-->
-
-<?php
-include("includes/footer.php")
-?>
-
-
-<!DOCTYPE html>
-<html>
+?><html>
 <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
 
-<style>
-* {box-sizing: border-box;}
-ul {list-style-type: none;}
-body {font-family: Verdana, sans-serif;}
+        // Load Charts and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
 
-.month {
-    padding: 70px 25px;
-    width: 100%;
-    background: #1abc9c;
-    text-align: center;
-}
+        // Draw the pie chart for Sarah's pizza when Charts is loaded.
+        google.charts.setOnLoadCallback(drawSarahChart);
 
-.month ul {
-    margin: 0;
-    padding: 0;
-}
+        // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+        google.charts.setOnLoadCallback(drawAnthonyChart);
 
-.month ul li {
-    color: white;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
+        // Callback that draws the pie chart for Sarah's pizza.
+        function drawSarahChart() {
 
-.month .prev {
-    float: left;
-    padding-top: 10px;
-}
+            // Create the data table for Sarah's pizza.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+                ['Mushrooms', 1],
+                ['Onions', 1],
+                ['Olives', 2],
+                ['Zucchini', 2],
+                ['Pepperoni', 1]
+            ]);
 
-.month .next {
-    float: right;
-    padding-top: 10px;
-}
+            // Set options for Sarah's pie chart.
+            var options = {title:'How Much Pizza Sarah Ate Last Night',
+                width:400,
+                height:300};
 
-.weekdays {
-    margin: 0;
-    padding: 10px 0;
-    background-color: #ddd;
-}
+            // Instantiate and draw the chart for Sarah's pizza.
+            var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart_div'));
+            chart.draw(data, options);
+        }
 
-.weekdays li {
-    display: inline-block;
-    width: 13.6%;
-    color: #666;
-    text-align: center;
-}
+        // Callback that draws the pie chart for Anthony's pizza.
+        function drawAnthonyChart() {
 
-.days {
-    padding: 10px 0;
-    background: #eee;
-    margin: 0;
-}
+            // Create the data table for Anthony's pizza.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+                ['Mushrooms', 2],
+                ['Onions', 2],
+                ['Olives', 2],
+                ['Zucchini', 0],
+                ['Pepperoni', 3]
+            ]);
 
-.days li {
-    list-style-type: none;
-    display: inline-block;
-    width: 13.6%;
-    text-align: center;
-    margin-bottom: 5px;
-    font-size:12px;
-    color: #777;
-}
+            // Set options for Anthony's pie chart.
+            var options = {title:'How Much Pizza Anthony Ate Last Night',
+                width:400,
+                height:300};
 
-.days li .active {
-    padding: 5px;
-    background: #1abc9c;
-    color: white !important
-}
-
-/* Add media queries for smaller screens */
-@media screen and (max-width:720px) {
-    .weekdays li, .days li {width: 13.1%;}
-}
-
-@media screen and (max-width: 420px) {
-    .weekdays li, .days li {width: 12.5%;}
-    .days li .active {padding: 2px;}
-}
-
-@media screen and (max-width: 290px) {
-    .weekdays li, .days li {width: 12.2%;}
-}
-</style>
+            // Instantiate and draw the chart for Anthony's pizza.
+            var chart = new google.visualization.PieChart(document.getElementById('Anthony_chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
 </head>
 <body>
-
-<h1>CSS Calendar</h1>
-
-<div class="month">      
-  <ul>
-    <li class="prev">&#10094;</li>
-    <li class="next">&#10095;</li>
-    <li>
-      August<br>
-      <span style="font-size:18px">2017</span>
-    </li>
-  </ul>
-</div>
-
-<ul class="weekdays">
-  <li>Mo</li>
-  <li>Tu</li>
-  <li>We</li>
-  <li>Th</li>
-  <li>Fr</li>
-  <li>Sa</li>
-  <li>Su</li>
-</ul>
-
-<ul class="days">  
-  <li>1</li>
-  <li>2</li>
-  <li>3</li>
-  <li>4</li>
-  <li>5</li>
-  <li>6</li>
-  <li>7</li>
-  <li>8</li>
-  <li>9</li>
-  <li><span class="active">10</span></li>
-  <li>11</li>
-  <li>12</li>
-  <li>13</li>
-  <li>14</li>
-  <li>15</li>
-  <li>16</li>
-  <li>17</li>
-  <li>18</li>
-  <li>19</li>
-  <li>20</li>
-  <li>21</li>
-  <li>22</li>
-  <li>23</li>
-  <li>24</li>
-  <li>25</li>
-  <li>26</li>
-  <li>27</li>
-  <li>28</li>
-  <li>29</li>
-  <li>30</li>
-  <li>31</li>
-</ul>
-
+<!--Table and divs that hold the pie charts-->
+<table class="columns">
+    <tr>
+        <td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="Anthony_chart_div" style="border: 1px solid #ccc"></div></td>
+    </tr>
+</table>
 </body>
 </html>
+
+
+<div>
+
+</div>

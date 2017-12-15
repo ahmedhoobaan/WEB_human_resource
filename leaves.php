@@ -38,10 +38,9 @@ include "php_actions/db_config.php";
 
                         <th>  ID</th>
                         <th>  Full Name</th>
-                        <th>  Transfer Date </th>
-                        <th>  Transfer Department</th>
-                        <th> Transfer to station</th>
-                        <th> Transfer Discription</th>
+                        <th>  leave Type </th>
+                        <th>  Start Date </th>
+                        <th> End Date </th>
                         <td> Actions </td>
 
 
@@ -53,18 +52,17 @@ include "php_actions/db_config.php";
                     </thead>
                     <?php
                     // this code upload the table values
-                    while($row = mysqli_fetch_array($Emp_tr2)) { ?>
+                    while($row = mysqli_fetch_array($Employee_leave)) { ?>
 
                         <tr>
 
 
-                            <td> <?php echo $row["Emp_id"] ?> </td>
-                            <td> <?php echo $row["Emp_transfer"] ?> </td>
+                            <td> <?php echo $row["emp_leave_id"] ?> </td>
+                            <td> <?php echo $row["Employee_name"] ?> </td>
 
-                            <td> <?php echo $row["trans_date"] ?> </td>
-                            <td> <?php echo $row["trans_departement"] ?> </td>
-                            <td> <?php echo $row["TransferToStation"] ?> </td>
-                            <td> <?php echo $row["trans_discription"] ?> </td>
+                            <td> <?php echo $row["leave_type"] ?> </td>
+                            <td> <?php echo $row["start_date"] ?> </td>
+                            <td> <?php echo $row["End_date"] ?> </td>
 
                             <td><a href="editemployee.php"  class="btn btn-warning"> Edit </a>
                                 <a href="?id=<?php echo $row['idd']?>" class="btn btn-danger"> Delete </a></td>
@@ -114,7 +112,7 @@ include "php_actions/db_config.php";
                             <select name="Employe_name" id="Employe_name" class="form-control" >
                                 <option>  </option>
 
-                                <?php while($row2 = mysqli_fetch_array($Emp_tr)):?>
+                                <?php while($row2 = mysqli_fetch_array($result1)):?>
                                     <option> <?php echo $row2[1];?> </option>
 
                                 <?php endwhile;?>
@@ -124,46 +122,39 @@ include "php_actions/db_config.php";
 
 
 
-                        <div class="form-group">
-                            <label for="Start_date">Transfer_date</label>
-                            <input type="date" class="form-control" id="Transfer_date" name="Transfer_date"  required="">
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label for="DOB">trans_departement</label>
-                            <select class="form-control" id="trans_departement" name="trans_departement" required>
-                                <option>   </option>
-                                <option> Administrator</option>
-                                <option> Head</option>
-                            </select>
-                        </div>
-
-
+                            <div class="form-group">
+                                <label for="DOB">Leave Type</label>
+                                <select class="form-control" id="Leave_Type" name="Leave_Type" required>
+                                    <option>   </option>
+                                    <option> study leave</option>
+                                    <option> sick leave</option>
+                                    <option> Tourism</option>
+                                </select>
+                            </div>
 
 
                         <div class="form-group">
-                            <label for="Achievements_title">TransferToStation</label>
-                            <input type="text" class="form-control" id="TransferToStation" name="TransferToStation"  required="">
+                            <label for="Start_date">Start_date</label>
+                            <input type="date" class="form-control" id="Start_date" name="Start_date"  required="">
                         </div>
+
 
                         <div class="form-group">
-                            <label for="Achievements_title">Transfer Discription</label>
-                            <input type="text" class="form-control" id="trans_discription" name="trans_discription"  required="">
+                            <label for="Achievements_title">End_date</label>
+                            <input type="date" class="form-control" id="End_date" name="End_date"  required="">
                         </div>
 
 
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-
-                </div>
-                </form>
             </div>
-
         </div>
     </div>
-</div>

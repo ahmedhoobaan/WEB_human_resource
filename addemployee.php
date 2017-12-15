@@ -2,22 +2,17 @@
 <?php
 include "includes/header.php";
 INCLUDE "php_actions/retrieve.php";
+
+
+
+
 ?>
 
 
-<script type="text/javascript" src="assets/jquery/jquery.min.js">      </script>
-
-<!-- bootsrap  js-->
-<script  type="text/javascript" src="assets/bootsrap/js/bootstrap.min.js"> </script>
-
-<script src="assets/jquery/jquery.tabledit.js"> </script>
-<!-- datatabale js-->
-<script  type="text/javascript" src="assets/datatable/dataTables.min.js"> </script>
-
-<script type="text/javascript" src="custom/js/index.js"></script><script type="text/javascript" src="custom/js/index.js"></script>
 
 
-<button class="btn btn-success pull-right" style="margin-right: 120px"  data-toggle="modal" data-target="#addMember">
+
+<button class="btn btn-success pull-right" style="margin-right: 170px"  data-toggle="modal" data-target="#addMember">
     <span class="glyphicon glyphicon-plus-sign"> </span> Add Members
 
 </button>
@@ -30,18 +25,23 @@ INCLUDE "php_actions/retrieve.php";
     <div class="row">
         <div class="col-md-12">
 
-            <center> <h1 class="page-header">Employee Management system  </h1> </center>
 
-            <table class="table" id="managetable">
+            <div style="padding-left: 300px;" >
+           <h1 class="page-header">Employee Management system  </h1>
+                </div>
+
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="managetable">
                 <thead>
                 <tr>
 
-                    <th>  F_Name</th>
-                    <th>  S_Name </th>
+                    <th>  ID</th>
+                    <th>  Full Name</th>
                     <th>  Date of birth </th>
                     <th>  City </th>
                     <th> Contact </th>
-                    <th> Address </th>
+                    <td> Actions </td>
+
 
 
 
@@ -51,22 +51,25 @@ INCLUDE "php_actions/retrieve.php";
                 </thead>
                 <?php
           // this code upload the table values
-                while($row = mysqli_fetch_array($results)){
+                while($row = mysqli_fetch_array($results)) { ?>
 
-                    echo'<tr>
+                    <tr>
 
-                   <td>'.$row["F_name"].'</td>
-                   <td>'.$row["S_name"].'</td>
-                    <td>'.$row["qualification"].'</td>
-                    <td>'.$row["city"].'</td>
-                    <td>'.$row["DOB"].'</td>
 
-                    <td>'.$row["contact_no"].'</td>
+                        <td> <?php echo $row["id"] ?> </td>
+                        <td> <?php echo $row["F_name"] ?> </td>
 
-                     </tr>
-                ';
-                }
+                        <td> <?php echo $row["DOB"] ?> </td>
+                        <td> <?php echo $row["city"] ?> </td>
+                        <td> <?php echo $row["contact_no"] ?> </td>
 
+                        <td><a href="editemployee.php"  class="btn btn-warning"> Edit </a>
+                        <a href="?id=<?php echo $row['idd']?>" class="btn btn-danger"> Delete </a></td>
+
+
+                    </tr>
+
+               <?php }
                 ?>
 
             </table>
@@ -74,6 +77,16 @@ INCLUDE "php_actions/retrieve.php";
     </div>
 </div>
 
+
+
+<script>
+
+    $(document).ready(function() {
+
+        $("#managetable").DataTable();
+
+    });
+</script>
 
 
 <!-- Module form bootsrap  to add new employee module -->
@@ -96,14 +109,8 @@ INCLUDE "php_actions/retrieve.php";
 
 
 
-                        <label for="exampleInputEmail1">First Name</label>
+                        <label for="exampleInputEmail1">Full Name</label>
                         <input type="text" class="form-control" id="f_name"  name="f_name" placeholder="Enter Second" required>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Second Name</label>
-                        <input type="text" class="form-control" id="S_name" name="S_name"  placeholder="Enter Second" required="">
-                    </div>
 
 
 
